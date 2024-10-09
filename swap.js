@@ -180,9 +180,9 @@ async function swapUsingExecute(routerContract, amountIn, amountOutMin, path, to
 }
 
 async function handleSwapError(error) {
-  console.error('Error dalam transaksi:', error.message);
+  console.error('Error in transaction:', error.message);
   if (error.error && error.error.message) {
-    console.error('Error detail:', error.error.message);
+    console.error('Error details:', error.error.message);
   }
   if (error.transaction) {
     console.error('Transaction data:', error.transaction);
@@ -213,19 +213,19 @@ async function main() {
         const decimals = await usdcContract.decimals();
 
         let amountToSwap = balance.mul(10).div(100);
-        console.log(`Jumlah USDC untuk swap (10% saldo): ${ethers.utils.formatUnits(amountToSwap, decimals)}`);
+        console.log(`USDC amount to swap (10% of balance): ${ethers.utils.formatUnits(amountToSwap, decimals)}`);
 
         if (amountToSwap.isZero()) {
-          console.log('Saldo USDC tidak cukup untuk swap. Menunggu...');
+          console.log('Insufficient USDC balance for swap. Waiting...');
           await new Promise(resolve => setTimeout(resolve, delayInMinutes * 60 * 1000));
           continue;
         }
 
         if (allowance.lt(amountToSwap)) {
-          console.log('Memberikan approval...');
+          console.log('Granting approval...');
           const approveTx = await usdcContract.approve(SAILFISH_ROUTER_ADDRESS, ethers.constants.MaxUint256);
           await approveTx.wait();
-          console.log('Approval berhasil');
+          console.log('Approval successful');
         }
 
         const path = [USDC_ADDRESS, GRASP_ADDRESS];
@@ -241,7 +241,7 @@ async function main() {
         // Check liquidity
         const [reserveIn, reserveOut] = await routerContract.getReserves(USDC_ADDRESS, GRASP_ADDRESS);
         if (reserveOut.lt(minAmountOut)) {
-          console.log('Liquiditas tidak cukup untuk swap. Menunggu...');
+          console.log('Insufficient liquidity for swap. Waiting...');
           await new Promise(resolve => setTimeout(resolve, delayInMinutes * 60 * 1000));
           continue;
         }
@@ -264,7 +264,7 @@ async function main() {
           GAS_PRICE
         );
 
-        console.log(`Swap berhasil. Transaction hash: ${swapTx.hash}`);
+        console.log(`Swap successful. Transaction hash: ${swapTx.hash}`);
 
       } catch (error) {
         await handleSwapError(error);
@@ -272,11 +272,11 @@ async function main() {
         await new Promise(resolve => setTimeout(resolve, 60 * 1000));
       }
 
-      console.log(`Menunggu ${delayInMinutes} menit sebelum transaksi berikutnya...`);
+      console.log(`Waiting ${delayInMinutes} minutes before the next transaction...`);
       await new Promise(resolve => setTimeout(resolve, delayInMinutes * 60 * 1000));
     }
   } catch (error) {
-    console.error('Error utama:', error.message);
+    console.error('Main error:', error.message);
   }
 }
 
