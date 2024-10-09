@@ -1,10 +1,10 @@
-# Sailfish Prgammatically Swap Issue
+# Sailfish Progammatically Swap Issue
 
 ## Overview
-I'm currently working on a swap bot using the Sailfish protocol, following the guide from [Sailfish Documentation](https://sailfish.gitbook.io/docs/getting-started/why-sailfish). However, I've encountered an error when running the bot.
+I'm currently working & learning on a swap Progammatically using the Sailfish protocol, following the guide from [Sailfish Documentation](https://sailfish.gitbook.io/docs/getting-started/why-sailfish). However, I've encountered an error when running the bot.
 
 ## Error Screenshot
-![Error Screenshot] (https://i.postimg.cc/gj9VFR46/eror-sailfish.png "eror")
+![Error Screenshot] (https://i.postimg.cc/gj9VFR46/eror-sailfish.png)
 
 ## Error Details
 The bot is encountering a transaction revert error. Here's a snippet of the error message:
