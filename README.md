@@ -7,7 +7,7 @@ I'm currently working & learning on a swap Progammatically using the Sailfish pr
 ![Error Screenshot] (https://i.postimg.cc/gj9VFR46/eror-sailfish.png)
 
 ## Error Details
-The bot is encountering a transaction revert error. Here's a snippet of the error message:
+The code is encountering a transaction revert error. Here's a snippet of the error message:
 
 ```
 Error in transaction: missing revert data in call exception; Transaction reverted without a reason string [ See: https://links.ethers.org/v5-errors-CALL_EXCEPTION ] (data="0x", transaction={"from":"0x0247a71A06919c5216E2cDcDaCcc90fCaee455Fd","to":"0xB97582DCB6F2866098cA210095a04dF3e11B76A6",...})
